@@ -96,7 +96,34 @@ class MenusController extends Controller
         return redirect('/');
     }
 
-    public function search(Request $data) {
-        json_encode($data->keyword);
+    public function search(Request $request) {
+    // echo json_encode($request->category2_id);
+        // $menus = Menu::where('category1_id', $request->category1_id)->get();
+        if(!empty($request->category1_id) && !empty($request->category1_id)) {
+            $menus = Menu::where('name', 'like', "%{$request->keyword}%")
+                // ->orWhere('content', 'like', "%{$request->keyword}%")
+                ->where('category1_id', $request->category1_id)
+                ->where('category2_id', $request->category2_id)
+                ->orderBy('id', 'desc')
+                ->get();
+        } else if(empty($request->category1_id) && !empty($request->category2_id)) {
+            $menus = Menu::where('name', 'like', "%{$request->keyword}%")
+            // ->orWhere('content', 'like', "%{$request->keyword}%")
+                ->where('category2_id', $request->category2_id)
+                ->orderBy('id', 'desc')
+                ->get();
+        } else if(!empty($request->category1_id) && empty($request->category2_id)) {
+            $menus = Menu::where('name', 'like', "%{$request->keyword}%")
+            // ->orWhere('content', 'like', "%{$request->keyword}%")
+                ->where('category1_id', $request->category1_id)
+                ->orderBy('id', 'desc')
+                ->get();
+        } else {
+            $menus = Menu::where('name', 'like', "%{$request->keyword}%")
+            // ->orWhere('content', 'like', "%{$request->keyword}%")
+                ->orderBy('id', 'desc')
+                ->get();
+        }
+        return response()->json($menus);
     }
 }

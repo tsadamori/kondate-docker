@@ -25,4 +25,4 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 // logout
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
-Route::post('menus.search', 'MenusController@search')->name('menus.search');
+Route::post('menus/search', 'MenusController@search')->name('menus.search');

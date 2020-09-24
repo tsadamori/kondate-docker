@@ -20,6 +20,7 @@
                 <div class="form-group">
                     {!! Form::label('category1_id', 'カテゴリ1:') !!}
                     {!! Form::select('category1_id', [
+                        '' => '選択してください',
                         '1' => '肉',
                         '2' => '卵',
                         '3' => '豆',
@@ -30,6 +31,7 @@
                 <div class="form-group">
                     {!! Form::label('category2_id', 'カテゴリ2:') !!}
                     {!! Form::select('category2_id', [
+                        '' => '選択してください',
                         '1' => '緑',
                         '2' => '豆',
                         '3' => '海藻',
