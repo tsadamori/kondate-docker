@@ -97,9 +97,7 @@ class MenusController extends Controller
     }
 
     public function search(Request $request) {
-    // echo json_encode($request->category2_id);
-        // $menus = Menu::where('category1_id', $request->category1_id)->get();
-        if(!empty($request->category1_id) && !empty($request->category1_id)) {
+        if(!empty($request->category1_id) && !empty($request->category2_id)) {
             $menus = Menu::where('name', 'like', "%{$request->keyword}%")
                 // ->orWhere('content', 'like', "%{$request->keyword}%")
                 ->where('category1_id', $request->category1_id)
