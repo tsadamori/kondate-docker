@@ -60,7 +60,20 @@
             kondateList = $('#kondate-list ul');
             id = $(this).data('id');
             name = $(this).data('name');
-            kondateList.append('<li class="list-group-item ml-3"><a href="menus/' + id + '">' + name + '</a><button type="button" class="btn btn-sm btn-danger">REMOVE</button></li>');
+            kondateList.append(
+                `<li class="list-group-item ml-3" data-id=` + id + `>`
+                     + name + 
+                    `<button type="button" class="btn btn-sm btn-danger kondate-remove">
+                        REMOVE
+                    </button>
+                </li>`
+            );
+            window.sessionStorage.setItem('menuId', id);
+            console.log(window.sessionStorage.getItem('menuId'));
+        });
+
+        $(document).on('click', '.kondate-remove', function() {
+            $(this).parent().remove();
         });
 
         $('#search-btn').on('click', function() {

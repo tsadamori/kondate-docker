@@ -24,19 +24,22 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
     </head>
 
-    <body>        
+    <body>
         <div class="container">
             @yield('content')
         </div>
         
         <script>
             $(document).on('click', '.add-btn', function() {
-                $('#ingredient-form') //append($('.ingredient-form-item').clone());
-                    .append('<div class="form-inline">' + 
-                        '<input type="text" name="ingredient" class="form-control">' +
-                        '<input type="button" value="+", class="add-btn btn btn-sm">' +
-                        '<input type="button" value="-", class="minus-btn btn btn-sm">' +
-                        '</div>');
+                $('#ingredient-form')
+                    .append(
+                        `<div class="form-inline">
+                        <input type="text" name="ingredients[]" class="form-control">
+                        <input type="text" name="ingredients_count[]" class="ml-3 form-control">
+                        <input type="button" value="+", class="ml-3 add-btn btn btn-sm">
+                        <input type="button" value="-", class="minus-btn btn btn-sm">
+                        </div>`
+                    );
             });
             $(document).on('click', '.minus-btn', function() {
                 $(this).parent().remove();

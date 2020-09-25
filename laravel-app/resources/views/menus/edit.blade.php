@@ -20,23 +20,24 @@
                 <div class="form-group">
                     {!! Form::label('category1_id', 'カテゴリ1:') !!}
                     {!! Form::select('category1_id', [
-                        '' => '選択してください',
+                        '' => '',
                         '1' => '肉',
                         '2' => '卵',
                         '3' => '豆',
                         '4' => '魚',
                         '5' => 'その他',
-                    ], [], ['class' => 'form-control']) !!}
+                    ], [$menu->category1_id], ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('category2_id', 'カテゴリ2:') !!}
                     {!! Form::select('category2_id', [
-                        '' => '選択してください',
+                        '' => '',
                         '1' => '緑',
                         '2' => '豆',
                         '3' => '海藻',
                         '4' => 'きのこ',
-                    ], [], ['class' => 'form-control']) !!}
+                        '5' => 'その他',
+                    ], [$menu->category2_id], ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('outside_link', '外部リンク:') !!}

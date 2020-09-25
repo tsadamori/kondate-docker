@@ -26,3 +26,4 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::post('menus/search', 'MenusController@search')->name('menus.search');
+Route::post('kondate/generate_kondate_list', 'KondateController@generate_kondate_list')->name('kondate.generate_kondate_list');
