@@ -3,7 +3,7 @@
 @section('content')
     <div class="mt-5">
         <p>レシピ編集ページ</p>
-        <div>
+        <div id="edit-form">
             {!! Form::model($menu, ['route' => ['menus.update', $menu->id], 'method' => 'put']) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'レシピ名:（必須）') !!}
@@ -13,9 +13,15 @@
                     {!! Form::label('content', 'レシピ説明文:') !!}
                     {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
                 </div>
-                <div class="form-group">
-                    {!! Form::label('ingredients', '材料:（必須）') !!}
-                    {!! Form::text('ingredients', null, ['class' => 'form-control']) !!}
+               <div id="ingredient-form" class="form-group">
+                    {!! Form::label('ingredients[]', '材料:（必須）') !!}
+                    <div class="ingredient-form-item form-inline">
+                        {!! Form::label('ingredients[]', '材料: ', ['class' => 'ml-2']) !!}
+                        {!! Form::text('ingredients[]', null, ['class' => 'ml-1 form-control']) !!}
+                        {!! Form::label('ingredients_count[]', '数量: ', ['class' => 'ml-2']) !!}
+                        {!! Form::text('ingredients_count[]', null, ['class' => 'ml-1 form-control']) !!}
+                        {!! Form::button('＋', ['class' => 'ml-3 add-btn btn btn-sm']) !!}
+                    </div>
                 </div>
                 <div class="form-group">
                     {!! Form::label('category1_id', 'カテゴリ1:') !!}

@@ -66,6 +66,7 @@
                     `<button type="button" class="btn btn-sm btn-danger kondate-remove">
                         REMOVE
                     </button>
+                    <input type="hidden" name="kondate-id[]" value="` + id + `">
                 </li>`
             );
             window.sessionStorage.setItem('menuId', id);
@@ -106,7 +107,7 @@
                                     <a href="menus/` + value.id + `">` + value.name + `</a>
                                 </div>
                                 <div class="menu-btn col-5 text-right">
-                                    <form method="POST" action="menus/10" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="iNPQXfea1srDF63tqsv17oee313EZI17EGm2f66Z">
+                                    <form method="POST" action="menus/10" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE">
                                         <button class="add-menu-btn btn btn-sm btn-primary" type="button" data-id="` + value.id + `" data-name="` + value.name + `">add to kondate</button>
                                         <a href="menus/` + value.id + `/edit" class="btn btn-sm btn-success">edit</a>
                                         <input class="btn btn-sm btn-danger" type="submit" value="delete">

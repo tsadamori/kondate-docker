@@ -30,14 +30,16 @@
         </div>
         
         <script>
-            $(document).on('click', '.add-btn', function() {
+            $(document).on('click', '#create-form .add-btn, #edit-form .add-btn', function() {
                 $('#ingredient-form')
                     .append(
                         `<div class="form-inline">
-                        <input type="text" name="ingredients[]" class="form-control">
-                        <input type="text" name="ingredients_count[]" class="ml-3 form-control">
-                        <input type="button" value="+", class="ml-3 add-btn btn btn-sm">
-                        <input type="button" value="-", class="minus-btn btn btn-sm">
+                        <label for="ingredients[]" class="ml-2">材料: </label>
+                        <input type="text" name="ingredients[]" class="ml-1 form-control">
+                        <label for="ingredients_count[]" class="ml-2">数量: </label>
+                        <input type="text" name="ingredients_count[]" class="ml-1 form-control">
+                        <input type="button" value="＋", class="ml-3 add-btn btn btn-sm">
+                        <input type="button" value="ー", class="minus-btn btn btn-sm">
                         </div>`
                     );
             });

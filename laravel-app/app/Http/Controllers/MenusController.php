@@ -82,14 +82,25 @@ class MenusController extends Controller
     public function update(Request $request, $id) {
         $this->validate($request, [
             'name' => 'required|max:191',
-            'content' => 'required|max:191',
-            'ingredients' => 'required|max:191',
+            'content' => 'max:191',
+            // 'ingredients' => 'required|max:191',
         ]);
+        
+        $ingredients = $request->ingredients;
+        $ingredients_count = $request->ingredients_count;
+        $ingredients_array = [];
+
+        for ($i = 0; $i < count($ingredients); $i++) {
+            array_push($ingredients_array, !is_null($ingredients[$i]) ? $ingredients[$i] : '');
+            array_push($ingredients_array, !is_null($ingredients_count[$i]) ? $ingredients_count[$i] : '');
+        }
+
+        $insert_ingredients = implode(',', $ingredients_array);
 
         $menu = Menu::find($id);
         $menu->name = $request->name;
         $menu->content = !empty($request->content) ? $request->content : null;
-        $menu->ingredients = $request->ingredients;
+        $menu->ingredients = $insert_ingredients;
         $menu->category1_id = !empty($request->category1_id) ? $request->category1_id : null;
         $menu->category2_id = !empty($request->category2_id) ? $request->category2_id : null;
         $menu->outside_link = !empty($request->outside_link) ? $request->outside_link: null;
