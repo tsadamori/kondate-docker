@@ -73,9 +73,20 @@ class MenusController extends Controller
 
     public function edit($id) {
         $menu = Menu::find($id);
+        $tmp_array = explode(',', $menu->ingredients);
+
+        $ingredients = [];
+
+        for($i = 0; $i < count($tmp_array) / 2; $i++) {
+            $ingredients[$i]['ingredient'] = $tmp_array[$i * 2];
+            $ingredients[$i]['count'] = $tmp_array[$i * 2 + 1];
+        }
+        // var_dump($ingredients);
+        // exit;
 
         return view('menus.edit', [
             'menu' => $menu,
+            'ingredients' => $ingredients,
         ]);
     }
 
