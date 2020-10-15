@@ -5,9 +5,9 @@
 <div id="kondate_list">
     <ul class="list-unstyled">
         @foreach($ingredients_list as $ingredient)
-        @foreach($ingredient as $value)
-            <li><input type="checkbox" class="mr-2">{{ $value[0] }} {{ $value[1] }}</li>
-        @endforeach
+            @foreach($ingredient as $value)
+                <li><label><input type="checkbox" class="mr-2">{{ $value[0] }} {{ $value[1] }}</li></label>
+            @endforeach
         @endforeach
     </ul>
 </div>
