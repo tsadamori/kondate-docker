@@ -15,13 +15,15 @@
                 </div>
                <div id="ingredient-form" class="form-group">
                     {!! Form::label('ingredients[]', '材料:（必須）') !!}
-                    <div class="ingredient-form-item form-inline">
-                        {!! Form::label('ingredients[]', '材料: ', ['class' => 'ml-2']) !!}
-                        {!! Form::text('ingredients[]', null, ['class' => 'ml-1 form-control']) !!}
-                        {!! Form::label('ingredients_count[]', '数量: ', ['class' => 'ml-2']) !!}
-                        {!! Form::text('ingredients_count[]', null, ['class' => 'ml-1 form-control']) !!}
-                        {!! Form::button('＋', ['class' => 'ml-3 add-btn btn btn-sm']) !!}
-                    </div>
+                    @foreach($ingredients as $ingredient)
+                        <div class="ingredient-form-item form-inline">
+                            {!! Form::label('ingredients[]', '材料: ', ['class' => 'ml-2']) !!}
+                            {!! Form::text('ingredients[]', $ingredient['ingredient'], ['class' => 'ml-1 form-control']) !!}
+                            {!! Form::label('ingredients_count[]', '数量: ', ['class' => 'ml-2']) !!}
+                            {!! Form::text('ingredients_count[]', $ingredient['count'], ['class' => 'ml-1 form-control']) !!}
+                            {!! Form::button('＋', ['class' => 'ml-3 add-btn btn btn-sm']) !!}
+                        </div>
+                    @endforeach
                 </div>
                 <div class="form-group">
                     {!! Form::label('category1_id', 'カテゴリ1:') !!}

@@ -4,7 +4,7 @@
     <div class="mt-5">
         <p>レシピ新規投稿ページ</p>
 
-        <div id="creaet-form">
+        <div id="create-form">
             {!! Form::model($menu, ['route' => 'menus.store']) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'レシピ名:（必須）') !!}
