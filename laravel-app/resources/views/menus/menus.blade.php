@@ -23,7 +23,7 @@
         </div>
         <div id="menus-list" class="mt-3">
             @if(count($menus) > 0)
-                <ul class="list-group">
+                <ul class="list-group mb-3">
                     @foreach($menus as $menu)
                         <li class="list-group-item">
                             <div class="row">
