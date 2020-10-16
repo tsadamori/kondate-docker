@@ -78,6 +78,15 @@ class MenusController extends Controller
         $menu->outside_link = !empty($request->outside_link) ? $request->outside_link: null;
         $menu->save();
 
+        //画像アップロード
+        $fileDir = "img";
+        $tmp = $_FILES['file']['tmp_name'];
+        $name = $_FILES['file']['name'];
+
+        if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+            move_uploaded_file($tmp, "$fileDir/$name");
+        }
+
         return redirect('/');
     }
 

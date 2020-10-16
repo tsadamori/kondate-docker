@@ -5,16 +5,16 @@
         <p>レシピ新規投稿ページ</p>
 
         <div id="create-form">
-            {!! Form::model($menu, ['route' => 'menus.store']) !!}
+            {!! Form::model($menu, ['enctype' => 'multipart/form-data', 'route' => 'menus.store']) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'レシピ名:（必須）') !!}
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('file', '画像: ') !!}
-                    {!! Form::file('file', ['accept' => 'image/*', 'enctype' => 'multipart/form', 'onchange' => 'onChangeFileInput(this)']) !!}
+                    {!! Form::file('file', ['accept' => 'image/*', 'onchange' => 'onChangeFileInput(this)']) !!}
                     <div id="thumbnail" class="mt-2 mb-4">
-                        <img id="thumbnail-img" src="">
+                        <img id="thumbnail-img" src="" height="100">
                     </div>
                 </div>
                 <div class="form-group">
