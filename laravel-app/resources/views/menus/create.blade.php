@@ -11,6 +11,13 @@
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
+                    {!! Form::label('file', '画像: ') !!}
+                    {!! Form::file('file', ['accept' => 'image/*', 'enctype' => 'multipart/form', 'onchange' => 'onChangeFileInput(this)']) !!}
+                    <div id="thumbnail" class="mt-2 mb-4">
+                        <img id="thumbnail-img" src="">
+                    </div>
+                </div>
+                <div class="form-group">
                     {!! Form::label('content', 'レシピ説明文:') !!}
                     {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
                 </div>
@@ -56,4 +63,18 @@
             {!! Form::close() !!}
         </div>
     </div>
+    <script>
+        function onChangeFileInput(fileInput) {
+                var file = fileInput.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function() {
+                        $('#thumbnail').show();
+                        $('#thumbnail-img').attr('src', reader.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+    </script>
 @endsection
