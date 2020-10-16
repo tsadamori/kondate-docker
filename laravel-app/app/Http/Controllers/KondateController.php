@@ -10,8 +10,12 @@ use App\Kondate;
 class KondateController extends Controller
 {
     public function generate_kondate_list() {
-        $kondate_ids = $_POST['kondate-id'];
+        $kondate_ids = isset($_POST['kondate-id']) ? $_POST['kondate-id'] : null;
         $ingredients_list = [];
+
+        if($kondate_ids == null) {
+            return redirect('/');
+        }
 
         foreach($kondate_ids as $kondate_id) {
             $menu = Menu::where('id', $kondate_id)->get()->first();
