@@ -22,6 +22,9 @@
                             {!! Form::label('ingredients_count[]', '数量: ', ['class' => 'ml-2']) !!}
                             {!! Form::text('ingredients_count[]', $ingredient['count'], ['class' => 'ml-1 form-control']) !!}
                             {!! Form::button('＋', ['class' => 'ml-3 add-btn btn btn-sm']) !!}
+                            @if($ingredient !== reset($ingredients))
+                                {!! Form::button('ー', ['class' => 'minus-btn btn btn-sm']) !!}
+                            @endif
                         </div>
                     @endforeach
                 </div>
