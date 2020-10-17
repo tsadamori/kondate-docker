@@ -17,6 +17,7 @@ class CreateMenusTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('content')->nullable();
+            $table->string('img_name')->nullable();
             $table->string('ingredients');
             $table->integer('category1_id')->nullable();
             $table->integer('category2_id')->nullable();
