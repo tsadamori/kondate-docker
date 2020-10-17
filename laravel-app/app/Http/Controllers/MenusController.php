@@ -11,7 +11,7 @@ class MenusController extends Controller
     public function index(Request $request) {
         if(\Auth::check()) {
             $user = \Auth::user();
-            $menus = Menu::orderBy('id', 'desc')->paginate(10);
+            $menus = Menu::where('delete_flg', 0)->orderBy('id', 'desc')->paginate(10);
             $kondate = new Kondate;
             $data = [
                 'user' => $user,
@@ -139,7 +139,8 @@ class MenusController extends Controller
 
     public function destroy($id) {
         $menu = Menu::find($id);
-        $menu->delete();
+        $menu->delete_flg = 1;
+        $menu->save();
 
         return redirect('/');
     }
