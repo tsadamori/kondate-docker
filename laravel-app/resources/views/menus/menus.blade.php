@@ -28,12 +28,16 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-7">
-                                    <a href="{{ route('menus.show', $menu->id) }}">
-                                        {{ $menu->name }}
-                                    </a>
-                                    <a href="img/{{ $menu->img_name }}">
-                                        <img class="ml-5"src="img/{{ $menu->img_name }}" height="100">
-                                    </a>
+                                    <div>
+                                        <a href="{{ route('menus.show', $menu->id) }}">
+                                            {{ $menu->name }}
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="img/{{ $menu->img_name }}">
+                                            <img class="mt-1"src="img/{{ $menu->img_name }}" height="100">
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="menu-btn col-5 text-right">
                                     {!! Form::model($menu, ['route' => ['menus.destroy', $menu->id], 'method' => 'delete']) !!}

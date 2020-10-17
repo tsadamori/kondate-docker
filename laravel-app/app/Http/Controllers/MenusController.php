@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Menu;
+use App\Category1;
+use App\Category2;
 use App\Kondate;
 
 class MenusController extends Controller
@@ -72,6 +74,7 @@ class MenusController extends Controller
         $menu = new Menu;
         $menu->name = $request->name;
         $menu->content = !empty($request->content) ? $request->content : null;
+        $menu->img_name = !empty($_FILES['file']['name']) ? $_FILES['file']['name'] : null;
         $menu->ingredients = $insert_ingredients;
         $menu->category1_id = !empty($request->category1_id) ? $request->category1_id : null;
         $menu->category2_id = !empty($request->category2_id) ? $request->category2_id : null;

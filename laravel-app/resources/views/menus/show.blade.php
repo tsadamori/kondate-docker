@@ -30,11 +30,11 @@
         </tr>
         <tr>
             <th>カテゴリ1</th>
-            <td>{{ $menu->category1_id }}</td>
+            <td>{{ $menu->category1->category1 }}</td>
         </tr>
         <tr>
             <th>カテゴリ2</th>
-            <td>{{ $menu->category2_id }}</td>
+            <td>{{ $menu->category2->category2 }}</td>
         </tr>
             <th>外部リンク</th>
             <td><a href="{{ $menu->outside_link }}" target="_blank">{{ $menu->outside_link }}</a></td>
