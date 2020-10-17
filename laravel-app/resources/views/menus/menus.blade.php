@@ -31,6 +31,9 @@
                                     <a href="{{ route('menus.show', $menu->id) }}">
                                         {{ $menu->name }}
                                     </a>
+                                    <a href="img/{{ $menu->img_name }}">
+                                        <img class="ml-5"src="img/{{ $menu->img_name }}" height="100">
+                                    </a>
                                 </div>
                                 <div class="menu-btn col-5 text-right">
                                     {!! Form::model($menu, ['route' => ['menus.destroy', $menu->id], 'method' => 'delete']) !!}

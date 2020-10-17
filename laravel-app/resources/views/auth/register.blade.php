@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm-6 offset-sm-3">
 
-            {!! Form::open(['route' => 'signup.get'], ['method' => 'post']) !!}
+            {!! Form::open(['route' => 'signup.post']) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'Name') !!}
                     {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}

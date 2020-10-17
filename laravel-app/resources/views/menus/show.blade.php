@@ -13,6 +13,14 @@
             <td>{{ $menu->content }}</td>
         </tr>
         <tr>
+            <th>画像</th>
+            <td>
+                <a href="../img/{{ $menu->img_name }}">
+                    <img src="../img/{{ $menu->img_name }}" alt="{{ $menu->name }}" width="100">
+                </a>
+            </td>
+        </tr>
+        <tr>
             <th>材料</th>
             <td>
                 @foreach($ingredients as $ingredient)
