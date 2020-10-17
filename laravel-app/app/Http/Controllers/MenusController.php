@@ -15,6 +15,12 @@ class MenusController extends Controller
             $user = \Auth::user();
             $menus = Menu::where('delete_flg', 0)->orderBy('id', 'desc')->paginate(10);
             $kondate = new Kondate;
+
+            foreach($menus as $menu) {
+                $menu->category1_mod = isset($menu->category1->category1) ? $menu->category1->category1 : 'なし';
+                $menu->category2_mod = isset($menu->category2->category2) ? $menu->category2->category2 : 'なし';
+            }
+
             $data = [
                 'user' => $user,
                 'menus' => $menus,
@@ -30,6 +36,7 @@ class MenusController extends Controller
     public function show($id) {
         $menu = Menu::find($id);
 
+        //材料を配列に格納
         $tmp_array = explode(',', $menu->ingredients);
 
         $ingredients = [];
@@ -38,6 +45,10 @@ class MenusController extends Controller
             $ingredients[$i]['ingredient'] = $tmp_array[$i * 2];
             $ingredients[$i]['count'] = $tmp_array[$i * 2 + 1];
         }
+
+        //カテゴリの指定がない場合「なし」を表示
+        $menu->category1_mod = isset($menu->category1->category1) ? $menu->category1->category1 : 'なし';
+        $menu->category2_mod = isset($menu->category2->category2) ? $menu->category2->category2 : 'なし';
 
         return view('menus.show', [
             'menu' => $menu,
@@ -154,24 +165,28 @@ class MenusController extends Controller
                 // ->orWhere('content', 'like', "%{$request->keyword}%")
                 ->where('category1_id', $request->category1_id)
                 ->where('category2_id', $request->category2_id)
+                ->where('delete_flg', 0)
                 ->orderBy('id', 'desc')
                 ->get();
         } else if(empty($request->category1_id) && !empty($request->category2_id)) {
             $menus = Menu::where('name', 'like', "%{$request->keyword}%")
             // ->orWhere('content', 'like', "%{$request->keyword}%")
                 ->where('category2_id', $request->category2_id)
+                ->where('delete_flg', 0)
                 ->orderBy('id', 'desc')
                 ->get();
         } else if(!empty($request->category1_id) && empty($request->category2_id)) {
             $menus = Menu::where('name', 'like', "%{$request->keyword}%")
             // ->orWhere('content', 'like', "%{$request->keyword}%")
                 ->where('category1_id', $request->category1_id)
+                ->where('delete_flg', 0)
                 ->orderBy('id', 'desc')
                 ->get();
         } else {
             $menus = Menu::where('name', 'like', "%{$request->keyword}%")
             // ->orWhere('content', 'like', "%{$request->keyword}%")
                 ->orderBy('id', 'desc')
+                ->where('delete_flg', 0)
                 ->get();
         }
         return response()->json($menus);

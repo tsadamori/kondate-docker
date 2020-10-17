@@ -32,10 +32,11 @@
                                         <a href="{{ route('menus.show', $menu->id) }}">
                                             {{ $menu->name }}
                                         </a>
+                                        <span style="font-size: 12px;">　カテゴリ1: {{ $menu->category1_mod }}　カテゴリ2: {{ $menu->category2_mod }}</span>
                                     </div>
                                     <div>
                                         <a href="img/{{ $menu->img_name }}">
-                                            <img class="mt-1"src="img/{{ $menu->img_name }}" height="100">
+                                            <img class="mt-1" src="img/{{ $menu->img_name }}" height="100">
                                         </a>
                                     </div>
                                 </div>
@@ -111,7 +112,14 @@
                         `<li class="list-group-item">
                             <div class="row">
                                 <div class="col-7">
-                                    <a href="menus/` + value.id + `">` + value.name + `</a>
+                                    <div>
+                                        <a href="menus/` + value.id + `">` + value.name + `</a>
+                                        <span style="font-size: 12px;">　カテゴリ1: {{ $menu->category1->name }}　カテゴリ2: {{ $menu->category2->name }}</span>
+                                    </div>
+
+                                    <div class="mt-1">
+                                        <a href="img/` + value.img_name + `"><img src="img/` + value.img_name + `" height="100"></a>
+                                    </div>
                                 </div>
                                 <div class="menu-btn col-5 text-right">
                                     <form method="POST" action="menus/10" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE">

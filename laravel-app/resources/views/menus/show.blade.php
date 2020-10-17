@@ -16,7 +16,7 @@
             <th>画像</th>
             <td>
                 <a href="../img/{{ $menu->img_name }}">
-                    <img src="../img/{{ $menu->img_name }}" alt="{{ $menu->name }}" width="100">
+                    <img src="../img/{{ $menu->img_name }}" alt="{{ $menu->name }}" height="100">
                 </a>
             </td>
         </tr>
@@ -30,11 +30,11 @@
         </tr>
         <tr>
             <th>カテゴリ1</th>
-            <td>{{ $menu->category1->category1 }}</td>
+            <td>{{ $menu->category1_mod }}</td>
         </tr>
         <tr>
             <th>カテゴリ2</th>
-            <td>{{ $menu->category2->category2 }}</td>
+            <td>{{ $menu->category2_mod }}</td>
         </tr>
             <th>外部リンク</th>
             <td><a href="{{ $menu->outside_link }}" target="_blank">{{ $menu->outside_link }}</a></td>
