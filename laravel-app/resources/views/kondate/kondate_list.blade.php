@@ -4,26 +4,26 @@
 <p class="mt-3">買い物リスト</p>
 <div id="kondate_list">
 {!! Form::model($kondate, ['id' => 'kondate-save-form', 'route' => ['kondate.save'], 'method' => 'post']) !!}
-        <ul class="list-unstyled">
-@foreach($ingredients_list as $ingredient)
-@foreach($ingredient as $value)
-            <li>
-                <label>
-                    <input type="checkbox" class="mr-2">
-                    <span>{{ $value[0] }} {{ $value[1] }}</span>
-                    <input type="hidden" name="ingredient[]" value="{{ $value[0] }} {{ $value[1] }}">
-                </label>
-            </li>
+    <ul class="list-unstyled">
+@foreach($ingredients_list as $id => $ingredient)
+        <p>{{ $ingredient['name'] }}</p>
+        <input type="hidden" name="id[]" value="{{ $id }}">
+@foreach($ingredient['ingredient'] as $value)
+        <li>
+            <label>
+                <input type="checkbox" class="mr-2">
+                <span>{{ $value[0] }} {{ $value[1] }}</span>
+            </label>
+        </li>
 @endforeach
 @endforeach
-        </ul>
-        <!-- <input type="hidden" name="name" value="value"> -->
-        <div id="btn-area">
+    </ul>
+    <div id="btn-area">
 {!! Form::submit('save', ['id' => 'save-btn', 'class' => 'btn btn-secondary btn-sm']) !!}
-            <!-- <button type="submit" id="save-btn" class="btn btn-secondary btn-sm">save</button> -->
-            <button type="button" id="edit-btn" class="btn btn-primary btn-sm">edit</button>
-            <button type="button" id="complete-btn" class="btn btn-success btn-sm">complete</button>
-        </div>
+        <button type="button" id="edit-btn" class="btn btn-primary btn-sm">edit</button>
+        <button type="button" id="complete-btn" class="btn btn-success btn-sm">complete</button>
+        <a href="/"><button type="button" class="btn btn-sm">back</button></a>
+    </div>
 {!! Form::close() !!}
 </div>
 
