@@ -21,6 +21,16 @@ class KondateController extends Controller
             $menu = Menu::where('id', $kondate_id)->get()->first();
             $ingredients_list[] = array_chunk(explode(',', $menu->ingredients), 2);
         }
-        return view('menus/kondate_list', ['ingredients_list' => $ingredients_list]);
+
+        $kondate = new Kondate;
+
+        return view('menus/kondate_list', [
+            'kondate' => $kondate,
+            'ingredients_list' => $ingredients_list,
+        ]);
+    }
+
+    public function save_kondate_list() {
+
     }
 }
