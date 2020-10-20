@@ -17,4 +17,9 @@ class Menu extends Model
     {
         return $this->belongsTo('App\Category2');
     }
+
+    public function kondate()
+    {
+        return $this->belongsTo('App\Kondate');
+    }
 }

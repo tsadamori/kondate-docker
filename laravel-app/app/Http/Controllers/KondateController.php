@@ -18,9 +18,22 @@ class KondateController extends Controller
     }
 
     public function history_detail($id) {
-        $menu = Menu::where('id', $id)->get()->first();
-        var_dump($menu);
-        exit;
+        $kondate = Kondate::where('id', $id)->get()->first();
+
+        $menu_ids = explode(',', $kondate->menu_id);
+        $menu_array = [];
+
+        foreach ($menu_ids as $menu_id) {
+            $menu = Menu::where('id', $id)->get()->first();
+            $menu_array['name'][] = $menu->name;
+            $menu_array['ingredients'][] = explode(',', $menu->ingredients);
+        }
+
+        return view('kondate/detail', [
+            'kondate' => $kondate,
+            'menu_array' => $menu_array,
+        ]);
+
     }
 
     public function generate_kondate_list() {

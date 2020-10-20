@@ -189,6 +189,12 @@ class MenusController extends Controller
                 ->where('delete_flg', 0)
                 ->get();
         }
+
+        foreach($menus as $menu) {
+            $menu->category1_mod = isset($menu->category1->category1) ? $menu->category1->category1 : 'なし';
+            $menu->category2_mod = isset($menu->category2->category2) ? $menu->category2->category2 : 'なし';
+        }
+
         return response()->json($menus);
     }
 }

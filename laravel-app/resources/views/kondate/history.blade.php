@@ -12,4 +12,5 @@
 @endforeach
     </ul>
 </div>
+{!! link_to_route('/', 'back', [], ['class' => 'btn btn-primary btn-sm']) !!}
 @endsection
