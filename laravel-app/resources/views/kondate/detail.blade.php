@@ -2,10 +2,14 @@
 
 @section('content')
 {{ $kondate->created_at->format('Y年m月d日') }}
-@for($i = 0; $i < count($menu_array); $i++)
+@for($i = 0; $i < count($menu_array['name']); $i++)
 <div>
-    {{ $menu_array['name'][$i] }}<br>
-    {{ $menu_array['ingredients'][$i][0] }} {{ $menu_array['ingredients'][$i][1] }}<br>
+    <p>{{ $menu_array['name'][$i] }}</p>
+    <ul>
+@foreach($menu_array['ingredients'][$i] as $ingredient)
+        <li>{{ $ingredient[0] }} {{ $ingredient[1] }}</li>
+@endforeach
+    </ul>
 </div>
 @endfor
 {!! link_to_route('kondate.history', 'back', [], ['class' => 'btn btn-primary btn-sm']) !!}

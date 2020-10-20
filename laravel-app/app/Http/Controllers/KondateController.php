@@ -22,11 +22,12 @@ class KondateController extends Controller
 
         $menu_ids = explode(',', $kondate->menu_id);
         $menu_array = [];
+        $menu_array['ingredienst'] = [];
 
         foreach ($menu_ids as $menu_id) {
-            $menu = Menu::where('id', $id)->get()->first();
+            $menu = Menu::where('id', $menu_id)->get()->first();
             $menu_array['name'][] = $menu->name;
-            $menu_array['ingredients'][] = explode(',', $menu->ingredients);
+            $menu_array['ingredients'][] = array_chunk(explode(',', $menu->ingredients), 2);
         }
 
         return view('kondate/detail', [
