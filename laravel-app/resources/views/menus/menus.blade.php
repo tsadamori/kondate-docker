@@ -76,6 +76,23 @@
                     <input type="hidden" name="kondate-id[]" value="` + id + `">
                 </li>`
             );
+            data = {id: id};
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: 'menus/add_kondate',
+                data: data,
+                dataType: 'json',
+            }).done(function(res) {
+                console.log('done');
+            }).fail(function(res) {
+                console.log('fail');
+            });
             window.sessionStorage.setItem('menuId', id);
             console.log(window.sessionStorage.getItem('menuId'));
         });

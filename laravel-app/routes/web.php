@@ -22,6 +22,10 @@ Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 // login
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login.get');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
+// google login
+Route::post('google_login', 'Auth\LoginController@googleLogin')->name('googleLogin.post');
+Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
 // logout
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 

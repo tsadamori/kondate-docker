@@ -10,9 +10,12 @@
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
+        "google/apiclient": "^2.8",
         "laravel/framework": "^6.2",
+        "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.0",
         "laravelcollective/html": "^6.2",
+        "socialiteproviders/google": "^4.0",
         "thomaswelton/laravel-gravatar": "~1.0"
     },
     "require-dev": {

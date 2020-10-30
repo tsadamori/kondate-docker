@@ -24,5 +24,8 @@
 
             <p class="mt-2">New user? {!! link_to_route('signup.get', 'Sign up now!') !!}</p>
         </div>
+        <a href="/login/google" class="btn btn-secondary" role="button">
+            Google Login
+        </a>
     </div>
 @endsection

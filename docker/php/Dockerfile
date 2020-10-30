@@ -16,7 +16,9 @@ zip \
 unzip \
 && docker-php-ext-install pdo_mysql bcmath
 
-WORKDIR /var/www/html
+RUN composer require google/apiclient
+
+# WORKDIR /var/www/html
 
 #コンテナ内に入った時のディレクトリを指定
 WORKDIR /var/www/html
