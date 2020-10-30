@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="text-center">
+<div class="center">
+    <div class="text-center mt-5">
         <h1>Log in</h1>
     </div>
 
@@ -28,4 +29,5 @@
             <p class="mt-2">New user? {!! link_to_route('signup.get', 'Sign up now!') !!}</p>
         </div>
     </div>
+</div>
 @endsection

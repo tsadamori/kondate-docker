@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="text-center">
+<div class="center">
+    <div class="text-center mt-5">
         <h1>Sign up</h1>
     </div>
 
@@ -25,8 +26,9 @@
                     {!! Form::label('password_confirmation', 'Confirmation') !!}
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                 </div>
-                {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-sm']) !!}
             {!! Form::close() !!}
         </div>
     </div>
+</div>
 @endsection
