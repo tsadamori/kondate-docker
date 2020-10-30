@@ -1,16 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="kondaet-history">
-    <ul>
+<div class="mt-5">
+    <p>過去の献立リスト</p>
+    <div id="kondate-history">
+        <ul>
 @foreach($kondate as $value)
-        <li>
-            <a href="history/{{ $value->id }}">
-                {{ $value->created_at->format('Y年m月d日') }}
-            </a>
-        </li>
+            <li>
+                <a href="history/{{ $value->id }}">
+                    {{ $value->created_at->format('Y年m月d日') }}
+                </a>
+            </li>
 @endforeach
-    </ul>
+        </ul>
+    </div>
+    {!! link_to_route('/', 'back', [], ['class' => 'btn btn-primary btn-sm']) !!}
 </div>
-{!! link_to_route('/', 'back', [], ['class' => 'btn btn-primary btn-sm']) !!}
 @endsection

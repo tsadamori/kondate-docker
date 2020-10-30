@@ -20,12 +20,12 @@
                 </div>
 
                 {!! Form::submit('Log in', ['class' => 'btn btn-sm btn-primary']) !!}
+                <a href="/login/google" class="btn btn-secondary btn-sm" role="button">
+                    Google Login
+                </a>
             {!! Form::close() !!}
 
             <p class="mt-2">New user? {!! link_to_route('signup.get', 'Sign up now!') !!}</p>
         </div>
-        <a href="/login/google" class="btn btn-secondary" role="button">
-            Google Login
-        </a>
     </div>
 @endsection
