@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 use App\Menu;
 use App\Category1;
 use App\Category2;
@@ -196,5 +197,16 @@ class MenusController extends Controller
         }
 
         return response()->json($menus);
+    }
+
+    public function add_kondate(Request $request) {
+        // $_SESSION['menu_id'] = array_push($_SESSION['menu_id'], $request->id);
+        // $_SESSION['menu_id'][] = $request->id;
+        // $request->session()->push('menu_id', $request->id);
+        Session::Push('menu_id', array(1, 2, 3));
+        // echo json_encode($request->session()->all());
+        echo json_encode(Session::all());
+        // echo json_encode(Session::getId());
+        // echo json_encode($request->session()->all());
     }
 }

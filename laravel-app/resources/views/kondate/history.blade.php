@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mt-5">
+<div class="mt-3">
     <p>過去の献立リスト</p>
     <div id="kondate-history">
         <ul>

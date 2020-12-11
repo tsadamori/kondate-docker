@@ -30,10 +30,11 @@
     </head>
 
     <body>
+        @include('layouts.navbar')
         <div class="container">
             @yield('content')
         </div>
-        
+
         <script>
             $(document).on('click', '#create-form .add-btn, #edit-form .add-btn', function() {
                 $('#ingredient-form')

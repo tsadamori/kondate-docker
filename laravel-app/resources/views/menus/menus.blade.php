@@ -25,7 +25,7 @@
 @if(count($menus) > 0)
             <ul class="list-group mb-3">
 @foreach($menus as $menu)
-                <li class="list-group-item">
+                <li>
                     <div class="row">
                         <div class="col-7">
                             <div>
@@ -68,7 +68,7 @@
             id = $(this).data('id');
             name = $(this).data('name');
             kondateList.append(
-                `<li class="list-group-item ml-3" data-id=` + id + `>`
+                `<li class="ml-3" data-id=` + id + `>`
                      + name + 
                     `<button type="button" class="btn btn-sm btn-danger kondate-remove">
                         REMOVE
