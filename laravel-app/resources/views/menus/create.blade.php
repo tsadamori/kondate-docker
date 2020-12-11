@@ -63,18 +63,4 @@
             {!! Form::close() !!}
         </div>
     </div>
-    <script>
-        function onChangeFileInput(fileInput) {
-                var file = fileInput.files[0];
-
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function() {
-                        $('#thumbnail').show();
-                        $('#thumbnail-img').attr('src', reader.result);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            }
-    </script>
 @endsection
