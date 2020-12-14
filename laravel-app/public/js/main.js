@@ -75,8 +75,8 @@ $(document).on('click', '#search-btn', function() {
                         </div>
                         <div class="menu-btn col-5 text-right">
                             <form method="POST" action="menus/10" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE">
-                                <button class="add-menu-btn btn btn-sm btn-primary" type="button" data-id="` + value.id + `" data-name="` + value.name + `">add to kondate</button>
-                                <a href="menus/` + value.id + `/edit" class="btn btn-sm btn-success">edit</a>
+                                <button class="add-menu-btn btn btn-sm btn-dark" type="button" data-id="` + value.id + `" data-name="` + value.name + `">add to kondate</button>
+                                <a href="menus/` + value.id + `/edit" class="btn btn-sm btn-dark">edit</a>
                                 <input class="btn btn-sm btn-danger" type="submit" value="delete">
                             </form>
                         </div>

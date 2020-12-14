@@ -27,7 +27,7 @@ Route::post('google_login', 'Auth\LoginController@googleLogin')->name('googleLog
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
 // logout
-Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('kondate/history', 'KondateController@history')->name('kondate.history');
 Route::get('kondate/history/{id}', 'KondateController@history_detail');

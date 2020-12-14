@@ -1,7 +1,7 @@
-    <div class="mt-5">
-        <div class="form-inline text-right">
+    <div>
+        <!-- <div class="form-inline text-right">
             {!! Form::label('keyword', 'キーワード:') !!}
-            {!! Form::text('keyword', '', ['class', 'form-control']) !!}
+            {!! Form::text('keyword', '', ['class' => 'form-control']) !!}
             {!! Form::label('category1_id', 'カテゴリ:1') !!}
             {!! Form::select('category1_id', [
                 '' => '選択してください',
@@ -20,12 +20,12 @@
                 '4' => 'きのこ',
             ], ['class' => 'form-control']) !!}
             {!! Form::button('search', ['id' => 'search-btn', 'class' => 'form-control btn btn-sm btn-secondary']) !!}
-        </div>
+        </div> -->
         <div id="menus-list" class="mt-3">
 @if(count($menus) > 0)
             <ul class="list-group mb-3">
 @foreach($menus as $menu)
-                <li>
+                <li class="mb-5">
                     <div class="row">
                         <div class="col-7">
                             <div>
@@ -42,13 +42,14 @@
                         </div>
                         <div class="menu-btn col-5 text-right">
                             {!! Form::model($menu, ['route' => ['menus.destroy', $menu->id], 'method' => 'delete']) !!}
-                                {!! Form::button('add to kondate', [
-                                    'class' => 'add-menu-btn btn btn-sm btn-primary',
+                                {!! Form::button('献立に入れる', [
+                                    'class' => 'add-menu-btn btn btn-sm btn-dark',
                                     'type' => 'button',
                                     'data-id' => $menu->id,
-                                    'data-name' => $menu->name]                                        ) !!}
-                                {!! link_to_route('menus.edit', 'edit', [$menu->id], ['class' => 'btn btn-sm btn-success']) !!}
-                                {!! Form::submit('delete', ['class' => 'btn btn-sm btn-danger']) !!}
+                                    'data-name' => $menu->name
+                                ]) !!}
+                                {!! link_to_route('menus.edit', '編集', [$menu->id], ['class' => 'btn btn-sm btn-dark']) !!}
+                                {!! Form::submit('削除', ['class' => 'btn btn-sm btn-danger']) !!}
                             {!! Form::close() !!}
                         </div>
                     </div>

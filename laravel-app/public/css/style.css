@@ -1,8 +1,19 @@
 @charset "utf-8";
 
+/* common */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
 #create-form #thumbnail {
     display: none;
 }
 #btn-area #complete-btn {
     display: none;
+}
+
+/* navbar */
+#nav-search-form {
+    width: 50%;
 }
