@@ -6,14 +6,23 @@ ul {
     padding: 0;
 }
 
-#create-form #thumbnail {
-    display: none;
+/* container */
+.container {
+    max-width: 768px;
 }
+
 #btn-area #complete-btn {
     display: none;
 }
 
 /* navbar */
-#nav-search-form {
-    width: 50%;
+
+/* index */
+#generate-kondate-btn {
+    display: none;
+}
+
+/* create-form */
+#create-form #thumbnail {
+    display: none;
 }

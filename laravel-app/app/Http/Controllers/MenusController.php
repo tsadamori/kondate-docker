@@ -202,8 +202,8 @@ class MenusController extends Controller
     public function add_kondate(Request $request) {
         // $_SESSION['menu_id'] = array_push($_SESSION['menu_id'], $request->id);
         // $_SESSION['menu_id'][] = $request->id;
-        // $request->session()->push('menu_id', $request->id);
-        Session::Push('menu_id', array(1, 2, 3));
+        $request->session()->push('menu_id', $request->id);
+        // Session::Push('menu_id', array(1, 2, 3));
         // echo json_encode($request->session()->all());
         echo json_encode(Session::all());
         // echo json_encode(Session::getId());

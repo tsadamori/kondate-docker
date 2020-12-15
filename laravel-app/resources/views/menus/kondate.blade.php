@@ -4,6 +4,6 @@
             <ul class="list-group">
             </ul>
         </div>
-    {!! Form::submit('買い物リストをつくる', ['class' => 'btn btn-sm btn-dark']) !!}
+    {!! Form::submit('買い物リストをつくる', ['id' => 'generate-kondate-btn', 'class' => 'btn btn-sm btn-dark']) !!}
     {!! Form::close() !!}
 </div>

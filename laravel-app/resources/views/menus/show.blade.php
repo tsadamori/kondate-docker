@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@include('layouts.navbar')
+
 @section('content')
 <div class="mt-5">
     <p>メニュー詳細</p>

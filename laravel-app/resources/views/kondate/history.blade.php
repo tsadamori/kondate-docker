@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
+@include('layouts.navbar')
+
 @section('content')
 <div class="mt-3">
-    <p>過去の献立リスト</p>
+    <h1 class="h2 mb-5">過去の献立リスト</h1>
     <div id="kondate-history">
         <ul>
 @foreach($kondate as $value)

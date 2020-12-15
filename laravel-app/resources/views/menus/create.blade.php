@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
+@include('layouts.navbar')
+
 @section('content')
     <div class="mt-5">
-        <p>レシピ新規投稿ページ</p>
+        <h1 class="h2 mb-5">レシピ新規投稿ページ</h1>
 
         <div id="create-form" class="mb-5">
             {!! Form::model($menu, ['enctype' => 'multipart/form-data', 'route' => 'menus.store']) !!}
@@ -11,8 +13,8 @@
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('file', '画像: ') !!}
-                    {!! Form::file('file', ['accept' => 'image/*', 'onchange' => 'onChangeFileInput(this)']) !!}
+                    {!! Form::label('file', '画像を登録', ['class' => 'btn btn-sm btn-secondary']) !!}
+                    {!! Form::file('file', ['class' => 'd-none', 'accept' => 'image/*', 'onchange' => 'onChangeFileInput(this)']) !!}
                     <div id="thumbnail" class="mt-2 mb-4">
                         <img id="thumbnail-img" src="" height="100">
                     </div>
@@ -23,10 +25,10 @@
                 </div>
                 <div id="ingredient-form" class="form-group">
                     {!! Form::label('ingredients[]', '材料:（必須）') !!}
-                    <div class="ingredient-form-item form-inline">
-                        {!! Form::label('ingredients[]', '材料: ', ['class' => 'ml-2']) !!}
+                    <div class="ingredient-form-item form-inline mb-2">
+                        {!! Form::label('ingredients[]', '材料: ') !!}
                         {!! Form::text('ingredients[]', null, ['class' => 'ml-1 form-control']) !!}
-                        {!! Form::label('ingredients_count[]', '数量: ', ['class' => 'ml-2']) !!}
+                        {!! Form::label('ingredients_count[]', '数量: ', ['class' => 'ml-3']) !!}
                         {!! Form::text('ingredients_count[]', null, ['class' => 'ml-1 form-control']) !!}
                         {!! Form::button('＋', ['class' => 'ml-3 add-btn btn btn-sm']) !!}
                     </div>
