@@ -10,7 +10,7 @@ use App\Kondate;
 class KondateController extends Controller
 {
     public function history() {
-        $kondate = Kondate::all();
+        $kondate = Kondate::orderBy('created_at', 'desc')->get();
 
         return view('kondate/history', [
             'kondate' => $kondate,

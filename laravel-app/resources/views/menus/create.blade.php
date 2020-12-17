@@ -3,13 +3,13 @@
 @include('layouts.navbar')
 
 @section('content')
-    <div class="mt-5">
-        <h1 class="h2 mb-5">レシピ新規投稿ページ</h1>
+    <div class="container pt-5">
+        <h1 class="h3 mb-5">新規投稿</h1>
 
         <div id="create-form" class="mb-5">
             {!! Form::model($menu, ['enctype' => 'multipart/form-data', 'route' => 'menus.store']) !!}
                 <div class="form-group">
-                    {!! Form::label('name', 'レシピ名:（必須）') !!}
+                    {!! Form::label('name', '献立名:（必須）') !!}
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
@@ -20,13 +20,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    {!! Form::label('content', 'レシピ説明文:') !!}
+                    {!! Form::label('content', '説明:') !!}
                     {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
                 </div>
                 <div id="ingredient-form" class="form-group">
                     {!! Form::label('ingredients[]', '材料:（必須）') !!}
                     <div class="ingredient-form-item form-inline mb-2">
-                        {!! Form::label('ingredients[]', '材料: ') !!}
                         {!! Form::text('ingredients[]', null, ['class' => 'ml-1 form-control']) !!}
                         {!! Form::label('ingredients_count[]', '数量: ', ['class' => 'ml-3']) !!}
                         {!! Form::text('ingredients_count[]', null, ['class' => 'ml-1 form-control']) !!}
@@ -60,8 +59,8 @@
                     {!! Form::text('outside_link', null, ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('投稿', ['class' => 'btn btn-sm btn-success']) !!}
-                {{ link_to_route('/', '戻る', [], ['class' => 'btn btn-sm btn-primary']) }}
+                {!! Form::submit('投稿', ['class' => 'btn btn-sm btn-dark']) !!}
+                {{ link_to_route('/', '戻る', [], ['class' => 'btn btn-sm btn-secondary']) }}
             {!! Form::close() !!}
         </div>
     </div>

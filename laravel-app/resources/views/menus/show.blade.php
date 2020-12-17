@@ -3,9 +3,8 @@
 @include('layouts.navbar')
 
 @section('content')
-<div class="mt-5">
-    <p>メニュー詳細</p>
-
+<div class="container pt-5">
+    <h1 class="h3 mb-3">メニュー詳細<h1>
     <table class="table">
         <tr>
             <th>名前</th>
@@ -18,7 +17,11 @@
             <th>画像</th>
             <td>
                 <a href="../img/{{ $menu->img_name }}">
-                    <img src="../img/{{ $menu->img_name }}" alt="{{ $menu->name }}" height="100">
+                    @if ($menu->img_name)
+                        <img src="../img/{{ $menu->img_name }}" alt="{{ $menu->name }}" height="100">
+                    @else
+                        <img src="../img/no-image.png" alt="no-image" height="100">
+                    @endif
                 </a>
             </td>
         </tr>
@@ -44,9 +47,9 @@
         <tr>
     </table>
     {!! Form::model($menu, ['route' => ['menus.destroy', $menu->id], 'method' => 'delete']) !!}
-        {!! link_to_route('menus.edit', 'edit', [$menu->id], ['class' => 'btn btn-sm btn-success']) !!}
-        {!! Form::submit('delete', ['class' => 'btn btn-sm btn-danger']) !!}
-        {!! link_to_route('/', 'back', [], ['class' => 'btn btn-sm btn-primary']) !!}
+        {!! link_to_route('menus.edit', '編集', [$menu->id], ['class' => 'btn btn-sm btn-secondary']) !!}
+        {!! link_to_route('/', 'TOPに戻る', [], ['class' => 'btn btn-sm btn-secondary']) !!}
+        {!! Form::submit('削除', ['class' => 'btn btn-sm btn-danger']) !!}
     {!! Form::close() !!}
 </div>
 @endsection

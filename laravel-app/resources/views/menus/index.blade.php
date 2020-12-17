@@ -4,8 +4,10 @@
 
 @section('content')
 
-@include('menus.kondate')
-
-@include('menus.menus')
+<div class="contianer pt-5">
+    @include('menus.kondate')
+    
+    @include('menus.menus')
+</div>
 
 @endsection

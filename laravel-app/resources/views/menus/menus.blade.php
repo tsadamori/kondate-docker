@@ -1,3 +1,5 @@
+<div>
+    <h2 class="h3">My献立</h2>
     <div id="search-form mr-0">
         {!! Form::open(['class' => 'form-inline justify-content-end']) !!}
             <div class="form-group mr-sm-2">
@@ -42,7 +44,7 @@
     </div>
     <div id="menus-list" class="mt-3">
 @if(count($menus) > 0)
-        <ul class="list-group mb-3">
+        <ul class="list-unstyled mb-3">
 @foreach($menus as $menu)
             <li class="mb-5">
                 <div class="row">
@@ -56,7 +58,11 @@
                         </div>
                         <div>
                             <a href="img/{{ $menu->img_name }}">
-                                <img class="mt-1" src="img/{{ $menu->img_name }}" height="100">
+                                @if ($menu->img_name)
+                                    <img class="mt-1" src="img/{{ $menu->img_name }}" height="100">
+                                @else
+                                    <img class="mt-1" src="img/no-image.png" height="100">
+                                @endif
                             </a>
                         </div>
                     </div>
@@ -84,6 +90,7 @@
                     </div>
                 </div>
             </li>
+            <hr>
 @endforeach
         </ul>
         {{ $menus->links('pagination::bootstrap-4') }}
@@ -91,3 +98,4 @@
         <p>No contents</p>
 @endif
     </div>
+</div>

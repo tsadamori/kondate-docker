@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="center">
+<div class="center mb-5">
     <div class="text-center mt-5">
         <h1 class="h2">Log in</h1>
     </div>
@@ -20,9 +20,9 @@
                     {!! Form::password('password', ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('Log in', ['class' => 'btn btn-sm btn-primary']) !!}
-                <a href="/login/google" class="btn btn-secondary btn-sm" role="button">
-                    Google Login
+                {!! Form::submit('ログイン', ['class' => 'btn btn-sm btn-dark']) !!}
+                <a href="/login/google" role="button">
+                    <img src="{{ asset('img/btn_google_signin_dark_normal_web.png') }}" alt="google-login">
                 </a>
             {!! Form::close() !!}
 

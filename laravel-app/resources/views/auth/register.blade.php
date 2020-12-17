@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="center">
+<div class="center mb-5">
     <div class="text-center mt-5">
         <h1>Sign up</h1>
     </div>
