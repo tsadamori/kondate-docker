@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use App\User;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-require_once '/var/www/html/laravel-app/vendor/autoload.php';
+// require_once '/var/www/html/laravel-app/vendor/autoload.php';
 use Socialite;
 
 class LoginController extends Controller
@@ -41,6 +42,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request)
+    {
+        $rules = [
+            'email' => 'required',
+            'password' => 'required',
+        ];
+        // TODO:でたらめなメールアドレスとパスワードを入力しても認証通ってるっぽい？
+
+        $messages = [
+            'email.required' => 'メールアドレスを入力して下さい',
+            'password.required' => 'パスワードを入力して下さい',
+        ];
+
+        $request->validate($rules, $messages);
     }
 
     public function redirectToGoogle()

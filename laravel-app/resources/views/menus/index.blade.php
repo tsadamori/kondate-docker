@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="contianer pt-5">
+<div class="pt-5">
     @include('menus.kondate')
     
     @include('menus.menus')

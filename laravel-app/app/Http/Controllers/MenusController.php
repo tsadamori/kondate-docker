@@ -11,7 +11,8 @@ use App\Kondate;
 
 class MenusController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         if(\Auth::check()) {
             $user = \Auth::user();
             $menus = Menu::where('delete_flg', 0)->orderBy('id', 'desc')->paginate(10);
@@ -34,7 +35,8 @@ class MenusController extends Controller
         return view('welcome');
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $menu = Menu::find($id);
 
         //材料を配列に格納
@@ -57,7 +59,8 @@ class MenusController extends Controller
         ]);
     }
 
-    public function create() {
+    public function create()
+    {
         $menu = new Menu;
         
         return view('menus.create', [
@@ -65,7 +68,8 @@ class MenusController extends Controller
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'name' => 'required|max:191',
             'content' => 'max:191',
@@ -105,7 +109,8 @@ class MenusController extends Controller
         return redirect('/');
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $menu = Menu::find($id);
         $tmp_array = explode(',', $menu->ingredients);
 
@@ -122,7 +127,8 @@ class MenusController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $this->validate($request, [
             'name' => 'required|max:191',
             'content' => 'max:191',
@@ -152,7 +158,8 @@ class MenusController extends Controller
         return redirect('/');
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $menu = Menu::find($id);
         $menu->delete_flg = 1;
         $menu->save();
@@ -160,7 +167,8 @@ class MenusController extends Controller
         return redirect('/');
     }
 
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
         if(!empty($request->category1_id) && !empty($request->category2_id)) {
             $menus = Menu::where('name', 'like', "%{$request->keyword}%")
                 // ->orWhere('content', 'like', "%{$request->keyword}%")

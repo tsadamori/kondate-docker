@@ -3,8 +3,8 @@
 @include('layouts.navbar')
 
 @section('content')
-    <div class="mt-5">
-        <p>レシピ編集ページ</p>
+    <div class="pt-5">
+        <h1 class="h3 mb-3">レシピ編集ページ</h1>
         <div id="edit-form">
             {!! Form::model($menu, ['route' => ['menus.update', $menu->id], 'method' => 'put']) !!}
                 <div class="form-group">
@@ -18,8 +18,7 @@
                <div id="ingredient-form" class="form-group">
                     {!! Form::label('ingredients[]', '材料:（必須）') !!}
                     @foreach($ingredients as $ingredient)
-                        <div class="ingredient-form-item form-inline">
-                            {!! Form::label('ingredients[]', '材料: ', ['class' => 'ml-2']) !!}
+                        <div class="ingredient-form-item form-inline mb-2">
                             {!! Form::text('ingredients[]', $ingredient['ingredient'], ['class' => 'ml-1 form-control']) !!}
                             {!! Form::label('ingredients_count[]', '数量: ', ['class' => 'ml-2']) !!}
                             {!! Form::text('ingredients_count[]', $ingredient['count'], ['class' => 'ml-1 form-control']) !!}
@@ -57,8 +56,8 @@
                     {!! Form::text('outside_link', null, ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('更新', ['class' => 'btn btn-sm btn-success']) !!}
-                {{ link_to_route('/', '戻る', [], ['class' => 'btn btn-sm btn-primary']) }}
+                {{ link_to_route('/', 'TOPに戻る', [], ['class' => 'btn btn-sm btn-secondary']) }}
+                {!! Form::submit('更新', ['class' => 'btn btn-sm btn-pink']) !!}
             {!! Form::close() !!}
         </div>
     </div>

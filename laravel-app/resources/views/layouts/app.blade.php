@@ -30,8 +30,8 @@
         <meta name="google-signin-client_id" content="498721313974-dl33bei3kivpfuukes75650bvcqj7ivd.apps.googleusercontent.com">
     </head>
 
-    <body class="bg-secondary">
-        <div class="container bg-light p-5">
+    <body class="bg-beige">
+        <div class="container bg-light p-5 shadow">
             @yield('content')
         </div>
 

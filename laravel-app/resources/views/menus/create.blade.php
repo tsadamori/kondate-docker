@@ -13,7 +13,7 @@
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('file', '画像を登録', ['class' => 'btn btn-sm btn-secondary']) !!}
+                    {!! Form::label('file', '画像を登録', ['class' => 'btn btn-sm btn-pink']) !!}
                     {!! Form::file('file', ['class' => 'd-none', 'accept' => 'image/*', 'onchange' => 'onChangeFileInput(this)']) !!}
                     <div id="thumbnail" class="mt-2 mb-4">
                         <img id="thumbnail-img" src="" height="100">
@@ -58,9 +58,9 @@
                     {!! Form::label('outside_link', '外部リンク:') !!}
                     {!! Form::text('outside_link', null, ['class' => 'form-control']) !!}
                 </div>
-
-                {!! Form::submit('投稿', ['class' => 'btn btn-sm btn-dark']) !!}
-                {{ link_to_route('/', '戻る', [], ['class' => 'btn btn-sm btn-secondary']) }}
+                <hr>
+                {{ link_to_route('/', 'TOPに戻る', [], ['class' => 'btn btn-sm btn-secondary']) }}
+                {!! Form::submit('投稿', ['class' => 'btn btn-sm btn-pink']) !!}
             {!! Form::close() !!}
         </div>
     </div>

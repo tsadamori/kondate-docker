@@ -1,20 +1,31 @@
+$(function() {
+    var pos = 0;
+    $(window).on('scroll' ,function() {
+    
+        if($(this).scrollTop() < pos) {
+            $('nav').slideDown();
+        } else {
+            $('nav').slideUp();
+        }
+        pos = $(this).scrollTop();
+    });
+})
+
 $(document).on('click', '.menu-btn .add-menu-btn', function() {
     $('#kondate-list').show();
     kondateList = $('#kondate-list ul');
     id = $(this).data('id');
     name = $(this).data('name');
     kondateList.append(
-        `<li class="mb-1 w-50" data-id=` + id + `>`
+        `<li class="mb-1 w-sm-50" data-id=` + id + `>`
              + name + 
             `<button type="button" class="btn btn-sm btn-danger ml-3 kondate-remove">
-                REMOVE
+                献立から外す
             </button>
             <input type="hidden" class="mr-0" name="kondate-id[]" value="` + id + `">
         </li>`
     );
     data = {id: id};
-
-    // $('#generate-kondate-btn').show();
 
     $.ajaxSetup({
         headers: {
@@ -58,36 +69,46 @@ $(document).on('click', '#search-btn', function() {
         data: data,
         dataType: 'json',
     }).done(function(res) {
-        var target = $('#menus-list ul.list-group');
+        var target = $('#menus-list ul');
         while(target[0].firstChild) {
             target[0].removeChild(target[0].firstChild);
         }
         if(res.length !== 0) {
             $.each(res, function(index, value){
+                if (value.img_name == null) {
+                    img_name = 'no-image.png'
+                } else {
+                    img_name = value.img_name;
+                }
                 html =
-                    `<li class="mb-5">
+                    `<li class="mb-3">
+                        <div class="mb-3 text-left">
+                            <a href="menus/` + value.id + `"><h2 class="h5">` + value.name + `</h2></a>　
+                            <br>
+                            <span class="small">カテゴリ1: ` + value.category1_mod + `　カテゴリ2: ` + value.category2_mod + `</span>
+                        </div>
+                        <div>
+                            <p>` + value.content + `</p>
+                        </div>
                         <div class="row">
-                            <div class="col-6">
-                                <div class="mb-lg-3">
-                                    <a href="menus/` + value.id + `">` + value.name + `</a>　
-                                    <br>
-                                    <span class="small">カテゴリ1: ` + value.category1_mod + `　カテゴリ2: ` + value.category2_mod + `</span>
-                                </div>
-    
+                            <div class="col-12 col-sm-4 mb-3 text-center text-sm-right">
                                 <div class="mt-1">
-                                    <a href="img/` + value.img_name + `"><img src="img/` + value.img_name + `" height="100"></a>
+                                    <a href="img/` + img_name + `">
+                                        <img src="img/` + img_name + `" width="200" height="200">
+                                    </a>
                                 </div>
                             </div>
-                            <div class="menu-btn col-6 text-right">
+                            <div class="menu-btn col-12 col-sm-8 text-right">
                                 <form method="POST" action="menus` + value.id + `" accept-charset="UTF-8" class="form-group">
                                     <input class="form-control" name="_method" type="hidden" value="DELETE">
-                                    <button class="add-menu-btn btn btn-sm btn-dark form-control mb-2" type="button" data-id="` + value.id + `" data-name="` + value.name + `">献立に入れる</button>
-                                    <a href="menus/` + value.id + `/edit" class="btn btn-sm btn-dark form-control mb-2">編集</a>
+                                    <button class="add-menu-btn btn btn-sm btn-pink form-control mb-2" type="button" data-id="` + value.id + `" data-name="` + value.name + `">献立に入れる</button>
+                                    <a href="menus/` + value.id + `/edit" class="btn btn-sm btn-pink2 form-control mb-2">編集</a>
                                     <input class="btn btn-sm btn-danger form-control" type="submit" value="削除">
                                 </form>
                             </div>
                         </div>
-                    </li>`;
+                    </li>
+                    <hr>`;
                 target.append(html);
             });
         } else {
@@ -131,7 +152,7 @@ function onChangeFileInput(fileInput) {
 }
 
 $(document).on('click', '#btn-area #edit-btn', function() {
-    $('li').each(function(index) {
+    $('#kondate_list li').each(function(index) {
         $(this).append('<input type="text" value="' +
             $(this).children('label').children('span').text() +
         '">');

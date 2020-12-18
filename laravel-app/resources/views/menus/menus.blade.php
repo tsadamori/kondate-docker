@@ -1,17 +1,17 @@
 <div>
-    <h2 class="h3">My献立</h2>
+    <h1 class="h3 mb-3">My献立</h1>
     <div id="search-form mr-0">
-        {!! Form::open(['class' => 'form-inline justify-content-end']) !!}
+        {!! Form::open(['class' => 'd-sm-flex justify-content-end']) !!}
             <div class="form-group mr-sm-2">
                 {!! Form::text('keyword', '', [
                     'id' => 'keyword',
                     'class' => 'form-control',
-                    'placeholder' => 'Search'
+                    'placeholder' => '検索'
                 ]) !!}
             </div>
             <div class="form-group mr-sm-2">
                 {!! Form::select('category1_id', [
-                    '' => 'Category1',
+                    '' => 'カテゴリ1',
                     '1' => '肉',
                     '2' => '卵',
                     '3' => '豆',
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group mr-sm-2">
                 {!! Form::select('category2_id', [
-                    '' => 'Category2',
+                    '' => 'カテゴリ2',
                     '1' => '緑',
                     '2' => '豆',
                     '3' => '海藻',
@@ -35,38 +35,42 @@
                 ]) !!}
             </div>
             <div class="form-group">
-                {!! Form::button('search', [
+                {!! Form::button('検索', [
                     'id' => 'search-btn',
-                    'class' => 'btn btn-secondary py-0 form-control'
+                    'class' => 'btn btn-pink py-0 form-control'
                 ]) !!}
             </div>
         {!! Form::close() !!}
     </div>
+    <hr>
     <div id="menus-list" class="mt-3">
 @if(count($menus) > 0)
         <ul class="list-unstyled mb-3">
 @foreach($menus as $menu)
-            <li class="mb-5">
+            <li class="mb-3">
+                <div class="mb-3 text-left">
+                    <a href="{{ route('menus.show', $menu->id) }}">
+                        <h2 class="h5 head">{{ $menu->name }}</h2>
+                    </a>
+                    <br>
+                    <span class="small">カテゴリ1: {{ $menu->category1_mod }}　カテゴリ2: {{ $menu->category2_mod }}</span>
+                </div>
+                <div>
+                    <p>{{ $menu->content }}</p>
+                </div>     
                 <div class="row">
-                    <div class="col-6">
-                        <div class="mb-lg-3">
-                            <a href="{{ route('menus.show', $menu->id) }}">
-                                {{ $menu->name }}
-                            </a>
-                            <br>
-                            <span class="small">カテゴリ1: {{ $menu->category1_mod }}　<br class="d-lg-none">カテゴリ2: {{ $menu->category2_mod }}</span>
-                        </div>
+                    <div class="col-12 col-sm-4 mb-3 text-center text-sm-left">
                         <div>
                             <a href="img/{{ $menu->img_name }}">
                                 @if ($menu->img_name)
-                                    <img class="mt-1" src="img/{{ $menu->img_name }}" height="100">
+                                    <img class="mt-1" src="img/{{ $menu->img_name }}" width="200" height="200">
                                 @else
-                                    <img class="mt-1" src="img/no-image.png" height="100">
+                                    <img class="mt-1" src="img/no-image.png" width="200" height="200">
                                 @endif
                             </a>
                         </div>
                     </div>
-                    <div class="menu-btn col-6 text-right">
+                    <div class="menu-btn col-12 col-sm-8 text-right">
                         {!! Form::model($menu, [
                             'route' => [
                                 'menus.destroy', $menu->id],
@@ -75,13 +79,13 @@
                             'class' => 'form-group'
                             ]) !!}
                             {!! Form::button('献立に入れる', [
-                                'class' => 'add-menu-btn btn btn-sm btn-dark form-control mb-2',
+                                'class' => 'add-menu-btn btn btn-sm btn-pink form-control mb-2',
                                 'type' => 'button',
                                 'data-id' => $menu->id,
                                 'data-name' => $menu->name
                             ]) !!}
                             {!! link_to_route('menus.edit', '編集', [$menu->id], [
-                                'class' => 'btn btn-sm btn-dark form-control mb-2'
+                                'class' => 'btn btn-sm btn-pink2 form-control mb-2'
                             ]) !!}
                             {!! Form::submit('削除', [
                                 'class' => 'btn btn-sm btn-danger form-control'

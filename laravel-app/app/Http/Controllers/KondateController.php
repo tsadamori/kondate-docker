@@ -64,7 +64,7 @@ class KondateController extends Controller
             'id' => 'required',
         ]);
 
-        //menu_idを配列から文字列に変更
+        //menu_idを配列から文字列に変換
         $menu_id = implode(',', $_POST['id']);
 
         $kondate = new Kondate;
