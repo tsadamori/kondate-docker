@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container pt-5">
-    <h1 class="h3">過去の献立一覧</h1>
+    <h1 class="h3">献立リスト</h1>
     <hr>
 @if (count($kondate) !== 0)
     <div id="kondate-history">

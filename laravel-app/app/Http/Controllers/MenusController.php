@@ -12,34 +12,34 @@ use App\Kondate;
 
 class MenusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
-        if(Auth::check()) {
-            $user = Auth::user();
-            $menus = Menu::where('user_id', Auth::id())
-                ->where('delete_flg', 0)
-                ->orderBy('id', 'desc')
-                ->paginate(10);
-            $kondate = new Kondate;
+        $user = Auth::user();
+        $menus = Menu::where('user_id', Auth::id())
+            ->where('delete_flg', 0)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+        $kondate = new Kondate;
 
-            // ユーザ名をセッションに保存
-            Session::put('user_name', $user->name);
+        // ユーザ名をセッションに保存
+        Session::put('user_name', $user->name);
 
-            foreach($menus as $menu) {
-                $menu->category1_mod = isset($menu->category1->category1) ? $menu->category1->category1 : 'なし';
-                $menu->category2_mod = isset($menu->category2->category2) ? $menu->category2->category2 : 'なし';
-            }
-
-            $data = [
-                'user' => $user,
-                'menus' => $menus,
-                'kondate' => $kondate,
-            ];
-
-            return view('menus.index', $data);
+        foreach($menus as $menu) {
+            $menu->category1_mod = isset($menu->category1->category1) ? $menu->category1->category1 : 'なし';
+            $menu->category2_mod = isset($menu->category2->category2) ? $menu->category2->category2 : 'なし';
         }
 
-        return view('welcome');
+        $data = [
+            'menus' => $menus,
+            'kondate' => $kondate,
+        ];
+
+        return view('menus.index', $data);
     }
 
     public function show($id)

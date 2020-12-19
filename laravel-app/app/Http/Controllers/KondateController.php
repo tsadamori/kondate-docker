@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use App\Menu;
 use App\Kondate;
 
 class KondateController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function history() {
         $kondate = Kondate::orderBy('created_at', 'desc')->get();
 
@@ -69,6 +75,7 @@ class KondateController extends Controller
 
         $kondate = new Kondate;
         $kondate->menu_id = $menu_id;
+        $kondate->user_id = Auth::id();
         $kondate->save();
 
         return view('kondate/save_complete');

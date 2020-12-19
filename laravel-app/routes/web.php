@@ -17,20 +17,23 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 // signup
-Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
-Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
+Route::get('/signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
+Route::post('/signup', 'Auth\RegisterController@register')->name('signup.post');
 // login
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login')->name('login.post');
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'Auth\LoginController@login')->name('login.post');
 // google login
-Route::post('google_login', 'Auth\LoginController@googleLogin')->name('googleLogin.post');
-Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
-Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
+Route::post('/google_login', 'Auth\LoginController@googleLogin')->name('googleLogin.post');
+Route::get('/login/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('/login/google/callback', 'Auth\LoginController@handleGoogleCallback');
 // logout
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 // user
 Route::get('/profile', 'UsersController@show')->name('users.show');
+Route::get('/password_change', 'UsersController@password_change')->name('users.password_change');
+Route::get('/delete', 'UsersController@delete')->name('users.delete');
+
 // menus
 Route::post('menus/search', 'MenusController@search')->name('menus.search');
 Route::post('menus/add_kondate', 'MenusController@add_kondate')->name('menus.add_kondate');

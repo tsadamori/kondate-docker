@@ -38,10 +38,10 @@
                 @error('password_confirmation')
                     <p class="alert alert-danger" role="alert">{{ $message }}</p>
                 @enderror
-                {!! Form::submit('Sign up', ['class' => 'btn btn-block btn-pink']) !!}
+                {!! Form::submit('新規登録', ['class' => 'btn btn-block btn-pink']) !!}
             {!! Form::close() !!}
 
-            <p class="mt-2">{!! link_to_route('login', '>> ログインはこちら') !!}</p>
+            <p class="mt-2">{!! link_to_route('login', '>> 会員の方 ログインはこちら') !!}</p>
         </div>
     </div>
 </div>

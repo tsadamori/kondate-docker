@@ -10,13 +10,13 @@
                 {{ link_to_route('menus.create', '新規投稿', [], ['class' => 'nav-link']) }}    
             </li>
             <li class="nav-item">
-                {{ link_to_route('kondate.history', '過去の献立', [], ['class' => 'nav-link']) }}
+                {{ link_to_route('kondate.history', '献立リスト', [], ['class' => 'nav-link']) }}
             </li>
             <li class="nav-item">
                 {{ link_to_route('logout', 'ログアウト', [], ['class' => 'nav-link']) }}
             </li>
         </ul>
-        <a href="{{ route('users.show') }}" class="d-none d-sm-block">ようこそ、{{ Session::get('user_name') }} 様</a>
+        <a href="{{ route('users.show') }}" class="d-none d-lg-block">ようこそ、{{ Session::get('user_name') }}さん</a>
     </div>
 </nav>
 
