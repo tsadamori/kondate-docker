@@ -3,7 +3,7 @@
 @section('content')
 <div class="center mb-5">
     <div class="text-center mt-5">
-        <h1 class="h2">Log in</h1>
+        <h1 class="h2">ログイン</h1>
     </div>
 
     <div class="row">
@@ -11,7 +11,7 @@
 
             {!! Form::open(['route' => 'login.post']) !!}
                 <div class="form-group">
-                    {!! Form::label('email', 'Email') !!}
+                    {!! Form::label('email', 'メールアドレス') !!}
                     {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
                 </div>
                 @error('email')
@@ -19,7 +19,7 @@
                 @enderror
 
                 <div class="form-group">
-                    {!! Form::label('password', 'Password') !!}
+                    {!! Form::label('password', 'パスワード') !!}
                     {!! Form::password('password', ['class' => 'form-control']) !!}
                 </div>
                 @error('password')
@@ -34,7 +34,7 @@
                 </div>
             {!! Form::close() !!}
 
-            <p class="mt-2">New user? {!! link_to_route('signup.get', 'Sign up now!') !!}</p>
+            <p class="mt-2">{!! link_to_route('signup.get', '>> 新規ユーザ登録こちら') !!}</p>
         </div>
     </div>
 </div>

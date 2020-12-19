@@ -61,11 +61,14 @@
                 <div class="row">
                     <div class="col-12 col-sm-4 mb-3 text-center text-sm-left">
                         <div>
-                            <a href="img/{{ $menu->img_name }}">
                                 @if ($menu->img_name)
-                                    <img class="mt-1" src="img/{{ $menu->img_name }}" width="200" height="200">
+                                    <a href="img/{{ $menu->img_name }}">
+                                        <img class="mt-1" src="img/{{ $menu->img_name }}" width="200" height="200">
+                                    </a>
                                 @else
-                                    <img class="mt-1" src="img/no-image.png" width="200" height="200">
+                                    <a href="img/no-image.png">
+                                        <img class="mt-1" src="img/no-image.png" width="200" height="200">
+                                    </a>
                                 @endif
                             </a>
                         </div>
@@ -99,7 +102,7 @@
         </ul>
         {{ $menus->links('pagination::bootstrap-4') }}
 @else
-        <p>No contents</p>
+        <p>まだ献立はありません...</p>
 @endif
     </div>
 </div>

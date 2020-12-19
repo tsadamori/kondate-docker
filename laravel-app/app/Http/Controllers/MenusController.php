@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use Session;
 use App\Menu;
 use App\Category1;
@@ -13,10 +14,16 @@ class MenusController extends Controller
 {
     public function index(Request $request)
     {
-        if(\Auth::check()) {
-            $user = \Auth::user();
-            $menus = Menu::where('delete_flg', 0)->orderBy('id', 'desc')->paginate(10);
+        if(Auth::check()) {
+            $user = Auth::user();
+            $menus = Menu::where('user_id', Auth::id())
+                ->where('delete_flg', 0)
+                ->orderBy('id', 'desc')
+                ->paginate(10);
             $kondate = new Kondate;
+
+            // ユーザ名をセッションに保存
+            Session::put('user_name', $user->name);
 
             foreach($menus as $menu) {
                 $menu->category1_mod = isset($menu->category1->category1) ? $menu->category1->category1 : 'なし';
@@ -37,7 +44,7 @@ class MenusController extends Controller
 
     public function show($id)
     {
-        $menu = Menu::find($id);
+        $menu = Menu::where('user_id', Auth::id())->find($id);
 
         //材料を配列に格納
         $tmp_array = explode(',', $menu->ingredients);
@@ -73,7 +80,6 @@ class MenusController extends Controller
         $this->validate($request, [
             'name' => 'required|max:191',
             'content' => 'max:191',
-            // 'ingredients' => 'required|max:191',
         ]);
 
         $ingredients = $request->ingredients;
@@ -89,6 +95,7 @@ class MenusController extends Controller
 
         $menu = new Menu;
         $menu->name = $request->name;
+        $menu->user_id = Auth::id();
         $menu->content = !empty($request->content) ? $request->content : null;
         $menu->img_name = !empty($_FILES['file']['name']) ? $_FILES['file']['name'] : null;
         $menu->ingredients = $insert_ingredients;
@@ -111,7 +118,7 @@ class MenusController extends Controller
 
     public function edit($id)
     {
-        $menu = Menu::find($id);
+        $menu = Menu::where('user_id', Auth::id())->find($id);
         $tmp_array = explode(',', $menu->ingredients);
 
         $ingredients = [];
@@ -132,7 +139,6 @@ class MenusController extends Controller
         $this->validate($request, [
             'name' => 'required|max:191',
             'content' => 'max:191',
-            // 'ingredients' => 'required|max:191',
         ]);
         
         $ingredients = $request->ingredients;
@@ -146,7 +152,7 @@ class MenusController extends Controller
 
         $insert_ingredients = implode(',', $ingredients_array);
 
-        $menu = Menu::find($id);
+        $menu = Menu::where('user_id', Auth::id())->find($id);
         $menu->name = $request->name;
         $menu->content = !empty($request->content) ? $request->content : null;
         $menu->ingredients = $insert_ingredients;
@@ -160,7 +166,7 @@ class MenusController extends Controller
 
     public function destroy($id)
     {
-        $menu = Menu::find($id);
+        $menu = Menu::where('user_id', Auth::id())->find($id);
         $menu->delete_flg = 1;
         $menu->save();
 
@@ -172,6 +178,7 @@ class MenusController extends Controller
         if(!empty($request->category1_id) && !empty($request->category2_id)) {
             $menus = Menu::where('name', 'like', "%{$request->keyword}%")
                 // ->orWhere('content', 'like', "%{$request->keyword}%")
+                ->where('user_id', Auth::id())
                 ->where('category1_id', $request->category1_id)
                 ->where('category2_id', $request->category2_id)
                 ->where('delete_flg', 0)
@@ -180,6 +187,7 @@ class MenusController extends Controller
         } else if(empty($request->category1_id) && !empty($request->category2_id)) {
             $menus = Menu::where('name', 'like', "%{$request->keyword}%")
             // ->orWhere('content', 'like', "%{$request->keyword}%")
+                ->where('user_id', Auth::id())
                 ->where('category2_id', $request->category2_id)
                 ->where('delete_flg', 0)
                 ->orderBy('id', 'desc')
@@ -187,6 +195,7 @@ class MenusController extends Controller
         } else if(!empty($request->category1_id) && empty($request->category2_id)) {
             $menus = Menu::where('name', 'like', "%{$request->keyword}%")
             // ->orWhere('content', 'like', "%{$request->keyword}%")
+                ->where('user_id', Auth::id())
                 ->where('category1_id', $request->category1_id)
                 ->where('delete_flg', 0)
                 ->orderBy('id', 'desc')
@@ -194,6 +203,7 @@ class MenusController extends Controller
         } else {
             $menus = Menu::where('name', 'like', "%{$request->keyword}%")
             // ->orWhere('content', 'like', "%{$request->keyword}%")
+                ->where('user_id', Auth::id())
                 ->orderBy('id', 'desc')
                 ->where('delete_flg', 0)
                 ->get();

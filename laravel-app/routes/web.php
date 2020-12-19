@@ -29,9 +29,14 @@ Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback')
 // logout
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('kondate/history', 'KondateController@history')->name('kondate.history');
-Route::get('kondate/history/{id}', 'KondateController@history_detail');
+// user
+Route::get('/profile', 'UsersController@show')->name('users.show');
+// menus
 Route::post('menus/search', 'MenusController@search')->name('menus.search');
 Route::post('menus/add_kondate', 'MenusController@add_kondate')->name('menus.add_kondate');
 Route::post('kondate/kondate_list', 'KondateController@generate_kondate_list')->name('kondate.kondate_list');
 Route::post('kondate/save_kondate_list', 'KondateController@save_kondate_list')->name('kondate.save');
+
+// kondate
+Route::get('kondate/history', 'KondateController@history')->name('kondate.history');
+Route::get('kondate/history/{id}', 'KondateController@history_detail');

@@ -44,22 +44,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
-    {
-        $rules = [
-            'email' => 'required',
-            'password' => 'required',
-        ];
-        // TODO:でたらめなメールアドレスとパスワードを入力しても認証通ってるっぽい？
-
-        $messages = [
-            'email.required' => 'メールアドレスを入力して下さい',
-            'password.required' => 'パスワードを入力して下さい',
-        ];
-
-        $request->validate($rules, $messages);
-    }
-
     public function redirectToGoogle()
     {
         // Google へのリダイレクト

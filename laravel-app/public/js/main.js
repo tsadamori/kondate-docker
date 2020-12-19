@@ -83,7 +83,9 @@ $(document).on('click', '#search-btn', function() {
                 html =
                     `<li class="mb-3">
                         <div class="mb-3 text-left">
-                            <a href="menus/` + value.id + `"><h2 class="h5">` + value.name + `</h2></a>　
+                            <a href="menus/` + value.id + `">
+                                <h2 class="h5 head">` + value.name + `</h2>
+                            </a>
                             <br>
                             <span class="small">カテゴリ1: ` + value.category1_mod + `　カテゴリ2: ` + value.category2_mod + `</span>
                         </div>
@@ -112,7 +114,7 @@ $(document).on('click', '#search-btn', function() {
                 target.append(html);
             });
         } else {
-            html = '<p>献立はありません。</p>';
+            html = '<p>条件に一致する献立はありません。</p>';
             target.append(html);
         }
         $('ul.pagination').hide();

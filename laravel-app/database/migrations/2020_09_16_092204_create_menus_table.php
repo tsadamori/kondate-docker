@@ -15,6 +15,7 @@ class CreateMenusTable extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned();
             $table->string('name');
             $table->string('content')->nullable();
             $table->string('img_name')->nullable();
@@ -25,6 +26,12 @@ class CreateMenusTable extends Migration
             $table->integer('delete_flg')->default(0);
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
+
+            // 外部キー制約
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

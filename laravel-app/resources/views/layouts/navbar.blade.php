@@ -4,7 +4,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
         <ul class="navbar-nav">
             <li class="nav-item">
                 {{ link_to_route('menus.create', '新規投稿', [], ['class' => 'nav-link']) }}    
@@ -16,6 +16,7 @@
                 {{ link_to_route('logout', 'ログアウト', [], ['class' => 'nav-link']) }}
             </li>
         </ul>
+        <a href="{{ route('users.show') }}" class="d-none d-sm-block">ようこそ、{{ Session::get('user_name') }} 様</a>
     </div>
 </nav>
 
