@@ -42,9 +42,9 @@
     <a href="{{ $menu->outside_link }}" target="_blank">{{ $menu->outside_link }}</a></td>
     <hr>
     {!! Form::model($menu, ['route' => ['menus.destroy', $menu->id], 'method' => 'delete']) !!}
-        {!! link_to_route('/', 'TOPに戻る', [], ['class' => 'btn btn-sm btn-pink2']) !!}
-        {!! link_to_route('menus.edit', '編集する', [$menu->id], ['class' => 'btn btn-sm btn-pink']) !!}
-        {!! Form::submit('削除する', ['class' => 'btn btn-sm btn-danger']) !!}
+        {!! link_to_route('/', 'TOPに戻る', [], ['class' => 'btn btn-sm btn-pink2 btn-block']) !!}
+        {!! link_to_route('menus.edit', '編集する', [$menu->id], ['class' => 'btn btn-sm btn-pink btn-block']) !!}
+        {!! Form::submit('削除する', ['class' => 'btn btn-sm btn-danger btn-block']) !!}
     {!! Form::close() !!}
 </div>
 @endsection

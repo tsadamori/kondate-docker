@@ -17,6 +17,10 @@ img {
 nav li a {
     color: #696969!important;
 }
+
+.container {
+    min-height: 800px;
+}
 .bg-beige {
     background-color: #ede4e1;
 }

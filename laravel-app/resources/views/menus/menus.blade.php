@@ -49,9 +49,11 @@
 @foreach($menus as $menu)
             <li class="mb-3">
                 <div class="mb-3 text-left">
-                    <a href="{{ route('menus.show', $menu->id) }}">
-                        <h2 class="h5 head">{{ $menu->name }}</h2>
-                    </a>
+                    <h2 class="h5 head">
+                        <a href="{{ route('menus.show', $menu->id) }}">
+                            {{ $menu->name }}
+                        </a>
+                    </h2>
                     <br>
                     <span class="small">カテゴリ1: {{ $menu->category1_mod }}　カテゴリ2: {{ $menu->category2_mod }}</span>
                 </div>

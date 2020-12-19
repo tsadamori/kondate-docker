@@ -16,7 +16,7 @@
                 {{ link_to_route('logout', 'ログアウト', [], ['class' => 'nav-link']) }}
             </li>
         </ul>
-        <a href="{{ route('users.show') }}" class="d-none d-lg-block">ようこそ、{{ Session::get('user_name') }}さん</a>
+        <a href="{{ route('users.show') }}" class="d-none d-lg-block">{{ Session::get('user_name') }}</a>
     </div>
 </nav>
 

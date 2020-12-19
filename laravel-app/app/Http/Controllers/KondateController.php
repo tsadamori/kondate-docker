@@ -15,15 +15,20 @@ class KondateController extends Controller
         $this->middleware('auth');
     }
 
-    public function history() {
-        $kondate = Kondate::orderBy('created_at', 'desc')->get();
+    public function history()
+    {
+        $kondate = Kondate::where('user_id', Auth::id())
+            ->where('delete_flg', 0)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('kondate/history', [
             'kondate' => $kondate,
         ]);
     }
 
-    public function history_detail($id) {
+    public function history_detail($id)
+    {
         $kondate = Kondate::where('id', $id)->get()->first();
 
         $menu_ids = explode(',', $kondate->menu_id);
@@ -43,7 +48,8 @@ class KondateController extends Controller
 
     }
 
-    public function generate_kondate_list() {
+    public function generate_kondate_list()
+    {
         $kondate_ids = isset($_POST['kondate-id']) ? $_POST['kondate-id'] : null;
         $ingredients_list = [];
 
@@ -59,13 +65,14 @@ class KondateController extends Controller
 
         $kondate = new Kondate;
 
-        return view('kondate/kondate_list', [
+        return view('menus/list', [
             'kondate' => $kondate,
             'ingredients_list' => $ingredients_list,
         ]);
     }
 
-    public function save_kondate_list(Request $request) {
+    public function save_kondate_list(Request $request)
+    {
         $this->validate($request, [
             'id' => 'required',
         ]);
@@ -79,5 +86,14 @@ class KondateController extends Controller
         $kondate->save();
 
         return view('kondate/save_complete');
+    }
+
+    public function delete(Request $request)
+    {
+        $kondate = Kondate::where('user_id', Auth::id())->find($request->id);
+        $kondate->delete_flg = 1;
+        $ret = $kondate->update();
+
+        echo json_encode($ret);
     }
 }

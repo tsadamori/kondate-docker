@@ -14,14 +14,20 @@ $(function() {
 $(document).on('click', '.menu-btn .add-menu-btn', function() {
     $('#kondate-list').show();
     kondateList = $('#kondate-list ul');
+
+    $('#added-list p:first').remove();
     id = $(this).data('id');
     name = $(this).data('name');
     kondateList.append(
-        `<li class="mb-1 w-sm-50" data-id=` + id + `>`
+        `<li class="mb-1 d-flex justify-content-between" data-id=` + id + `>
+            <div>`
              + name + 
-            `<button type="button" class="btn btn-sm btn-danger ml-3 kondate-remove">
-                献立から外す
-            </button>
+            `</div>
+            <div>
+                <button type="button" class="btn btn-sm btn-danger ml-3 kondate-remove">
+                    献立から外す
+                </button>
+            </div>
             <input type="hidden" class="mr-0" name="kondate-id[]" value="` + id + `">
         </li>`
     );
@@ -47,7 +53,10 @@ $(document).on('click', '.menu-btn .add-menu-btn', function() {
 });
 
 $(document).on('click', '.kondate-remove', function() {
-    $(this).parent().remove();
+    $(this).parent().parent().remove();
+    if ($('#added-list').children('li').length == 0) {
+        $('#added-list').append('<p>献立を追加して下さい！</p>');
+    }
 });
 
 $(document).on('click', '#search-btn', function() {
@@ -172,4 +181,29 @@ $(document).on('click', '#btn-area #complete-btn', function() {
     });
     $('#btn-area #edit-btn').show();
     $('#btn-area #complete-btn').hide();
+});
+
+$(document).on('click', '.kondate_delete_btn', function() {
+    var id = $(this).data('id');
+    $(this).parent().parent('li').remove();
+    if ($('#kondate-history-list').children().length == 0) {
+        $('#kondate-history').append('<p>献立リストはまだありません</p>')
+    }
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        url: 'delete',
+        data: {
+            'id': id,
+        },
+        dataType: 'json',
+    }).done(function(res) {
+        console.log('done');
+    }).fail(function(res) {
+        console.log('fail');
+    });
 });

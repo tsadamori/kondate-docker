@@ -17,6 +17,7 @@ class CreateKondateTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->string('menu_id');
+            $table->integer('delete_flg')->default(0);
             $table->timestamps();
 
             // 外部キー制約
