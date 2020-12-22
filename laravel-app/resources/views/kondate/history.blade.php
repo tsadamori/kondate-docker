@@ -8,7 +8,7 @@
     <hr>
 @if (count($kondate) !== 0)
     <div id="kondate-history">
-        <ul id="kondate-history-list">
+        <ul id="kondate-history-list" class="p-0">
 @foreach ($kondate as $value)
             <li class="mb-2 d-flex justify-content-between">
                 <div>
@@ -30,6 +30,6 @@
     <p>献立リストはまだありません</p>
 @endif
     <hr>
-    {!! link_to_route('/', 'TOPに戻る', [], ['class' => 'btn btn-secondary btn-sm btn-block w-75 mx-auto']) !!}
+    {!! link_to_route('/', 'TOPに戻る', [], ['class' => 'btn btn-secondary btn-sm btn-block mx-auto']) !!}
 </div>
 @endsection
